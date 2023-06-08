@@ -23,12 +23,17 @@ def data(request):
         
         # check whether it's valid:
         if news.is_valid():
+        #     # process the data in form.cleaned_data as required
             news_content = news.cleaned_data['newsContent']
             news_url = news.cleaned_data['sourceURL']
             # print("news : ", news_content, "\nsourceURL : ", news_url)
+            # print(news_url)
+            if not news_url:
+                news_url ="https://news.google.com/"
+            
             webContent = webScraper.process_news_object(news_url, news_content)
+            
             return render(request, "data.html", {"sourceURL":news_url,"newsContent": news_content, "webContent": webContent})
-        #     # process the data in form.cleaned_data as required
         #     # ...
         #     # redirect to a new URL:
         #     return HttpResponseRedirect("/thanks/")

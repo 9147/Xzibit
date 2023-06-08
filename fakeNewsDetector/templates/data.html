@@ -7,5 +7,17 @@
 
   <p>sourceURL: {{ sourceURL }}</p>
   <p>Content: {{ newsContent }}</p>
-  <p>Web content : {{webContent}}</p>
-{% endblock body %}
+{% comment %} 
+  <div class="embed-responsive embed-responsive-16by9">
+    <iframe class="embed-responsive-item" src={{newsURL}} allowfullscreen></iframe>
+  </div> 
+{% endcomment %}
+
+  <p>Web content : 
+  {% comment %} {{webContent}} {% endcomment %}
+  {% for item in webContent %}
+    <li>{{ item }}</li>
+  {% endfor %}
+  </p>
+
+{% endblock body %}

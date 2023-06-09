@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from django.http import HttpResponseRedirect
 from home.models import News
 from .forms import NewsForm
+from .ml_models import check_news
 from . import webScraper
 
 # Create your views here.
@@ -28,12 +29,13 @@ def data(request):
             news_url = news.cleaned_data['sourceURL']
             # print("news : ", news_content, "\nsourceURL : ", news_url)
             # print(news_url)
-            if not news_url:
-                news_url ="https://news.google.com/"
-            
-            webContent = webScraper.process_news_object(news_url, news_content)
-            
-            return render(request, "data.html", {"sourceURL":news_url,"newsContent": news_content, "webContent": webContent})
+            # if not news_url:
+            #     news_url ="https://news.google.com/"
+            #
+            # webContent = webScraper.process_news_object(news_url, news_content)
+            a = check_news(news_url, news_content)
+            return render(request,"data.html",{"sourceURL":news_url,"newsContent": news_content, "webContent": a})
+            # return render(request, "data.html", {"sourceURL":news_url,"newsContent": news_content, "webContent": webContent})
         #     # ...
         #     # redirect to a new URL:
         #     return HttpResponseRedirect("/thanks/")

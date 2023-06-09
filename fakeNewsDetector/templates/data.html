@@ -13,11 +13,14 @@
   </div> 
 {% endcomment %}
 
-  <p>Web content : 
-  {% comment %} {{webContent}} {% endcomment %}
+
+  <p>Web content :
+  {{webContent}}
+    {% comment %}
   {% for item in webContent %}
     <li>{{ item }}</li>
   {% endfor %}
+{% endcomment %}
   </p>
 
 {% endblock body %}

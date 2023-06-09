@@ -34,7 +34,10 @@ def data(request):
             #
             # webContent = webScraper.process_news_object(news_url, news_content)
             a = check_news(news_url, news_content)
-            return render(request,"data.html",{"sourceURL":news_url,"newsContent": news_content, "webContent": a})
+            accuracy = "false"
+            if a>=50:
+                accuracy = "true"
+            return render(request,"data.html",{"sourceURL":news_url,"newsContent": news_content, "score": a, "accuracy": accuracy})
             # return render(request, "data.html", {"sourceURL":news_url,"newsContent": news_content, "webContent": webContent})
         #     # ...
         #     # redirect to a new URL:

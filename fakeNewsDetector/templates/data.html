@@ -3,24 +3,29 @@
 {% block title %}News Details{% endblock title %}
 
 {% block body %}
-  <h1>News Details:</h1>
 
-  <p>sourceURL: {{ sourceURL }}</p>
-  <p>Content: {{ newsContent }}</p>
-{% comment %} 
-  <div class="embed-responsive embed-responsive-16by9">
+{% comment %}
+<h1>News Details:</h1>
+
+<p>sourceURL: {{ sourceURL }}</p>
+<p>Content: {{ newsContent }}</p>
+{% endcomment %}
+
+{% comment %}
+<div class="embed-responsive embed-responsive-16by9">
     <iframe class="embed-responsive-item" src={{newsURL}} allowfullscreen></iframe>
-  </div> 
+</div>
 {% endcomment %}
 
-
-  <p>Score :
-  {{webContent}}
-    {% comment %}
-  {% for item in webContent %}
-    <li>{{ item }}</li>
-  {% endfor %}
-{% endcomment %}
-  </p>
-
+{% comment %}
+<p>
+    {% for item in webContent %}
+        <li> {{ item }}% </li>
+    {% endfor %}
+    {% endcomment %}
+</p>
+<div style="text-align: center">
+    <h3>Score</h3>
+    <h1 style="font-size: 3rem">{{webContent}}%</h1>
+</div>
 {% endblock body %}
